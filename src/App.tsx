@@ -1,7 +1,13 @@
-import HeaderComponent from './components/Header/HeaderComponent'
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import HomePage from './pages/Home/Home'
 function App() {
-  return <HeaderComponent />
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App
