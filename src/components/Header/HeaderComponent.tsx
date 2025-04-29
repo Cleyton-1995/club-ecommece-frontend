@@ -1,20 +1,25 @@
-import './HeaderStyles.css'
+import {
+  HeaderContainer,
+  HeaderItem,
+  HeaderItems,
+  HeaderTitle
+} from './Header.styles'
 import { ShoppingCart } from 'lucide-react'
 
 export default function HeaderComponent() {
   return (
-    <div className="header-container">
-      <h2 className="haeader-title">CLUB CLOTHING</h2>
+    <HeaderContainer>
+      <HeaderTitle>CLUB CLOTHING</HeaderTitle>
 
-      <div className="header-items">
-        <div className="header-item">Explorar</div>
-        <div className="header-item">Login</div>
-        <div className="header-item">Criar Conta</div>
-        <div className="header-item">
+      <HeaderItems>
+        <HeaderItem>Explorar</HeaderItem>
+        <HeaderItem>Login</HeaderItem>
+        <HeaderItem>Criar Conta</HeaderItem>
+        <HeaderItem>
           <ShoppingCart size={25} />
           <p style={{ marginLeft: 5 }}>5</p>
-        </div>
-      </div>
-    </div>
+        </HeaderItem>
+      </HeaderItems>
+    </HeaderContainer>
   )
 }
