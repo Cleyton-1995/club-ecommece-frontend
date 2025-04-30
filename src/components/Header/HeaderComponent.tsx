@@ -5,7 +5,7 @@ import {
   HeaderItems,
   HeaderTitle
 } from './Header.styles'
-import { ShoppingCart } from 'lucide-react'
+import { BsCart3 } from 'react-icons/bs'
 
 export default function HeaderComponent() {
   const navigate = useNavigate()
@@ -23,7 +23,7 @@ export default function HeaderComponent() {
         <HeaderItem onClick={handleLoginClick}>Login</HeaderItem>
         <HeaderItem>Criar Conta</HeaderItem>
         <HeaderItem>
-          <ShoppingCart size={25} />
+          <BsCart3 size={25} />
           <p style={{ marginLeft: 5 }}>5</p>
         </HeaderItem>
       </HeaderItems>
