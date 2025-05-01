@@ -21,19 +21,13 @@ interface SignUpForm {
   passwordConfirmation: string
 }
 
-export default function SignUpPage({
-  name,
-  lastName,
-  email,
-  password,
-  passwordConfirmation
-}: SignUpForm) {
+export default function SignUpPage() {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors }
-  } = useForm()
+  } = useForm<SignUpForm>()
 
   const watchPassword = watch('password')
 

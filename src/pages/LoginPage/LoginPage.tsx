@@ -15,14 +15,19 @@ import CustomInput from '../../components/CustomInput/CustomInput'
 import { useForm } from 'react-hook-form'
 import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage'
 
+interface LoginForm {
+  email: string
+  password: string
+}
+
 export default function LoginPage() {
   const {
     register,
     formState: { errors },
     handleSubmit
-  } = useForm()
+  } = useForm<LoginForm>()
 
-  function handleSubmitPress(data: any) {
+  function handleSubmitPress(data: LoginForm) {
     console.log({ data })
   }
 
