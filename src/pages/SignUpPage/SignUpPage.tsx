@@ -12,9 +12,12 @@ import {
 } from './SignUpPage.styles'
 import { FiLogIn } from 'react-icons/fi'
 import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth, db } from '../../config/firebase.config'
+import { addDoc, collection } from 'firebase/firestore'
 
 interface SignUpForm {
-  name: string
+  firstName: string
   lastName: string
   email: string
   password: string
@@ -31,11 +34,24 @@ export default function SignUpPage() {
 
   const watchPassword = watch('password')
 
-  function handleSubmitPress(data: SignUpForm) {
-    console.log({ data })
+  async function handleSubmitPress(data: SignUpForm) {
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      )
+      await addDoc(collection(db, 'users'), {
+        id: userCredentials.user.uid,
+        email: userCredentials.user.email,
+        firstName: data.firstName,
+        lastName: data.lastName
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  console.log({ errors })
   return (
     <>
       <HeaderComponent />
@@ -47,12 +63,12 @@ export default function SignUpPage() {
             <p>Nome</p>
             <CustomInput
               placeholder="Digite seu nome"
-              hasError={!!errors?.name}
-              {...register('name', {
+              hasError={!!errors?.firstName}
+              {...register('firstName', {
                 required: true
               })}
             />
-            {errors?.name?.type === 'required' && (
+            {errors?.firstName?.type === 'required' && (
               <InputErrorMessage>O nome é obrigatório!</InputErrorMessage>
             )}
           </SignUpInputContainer>
