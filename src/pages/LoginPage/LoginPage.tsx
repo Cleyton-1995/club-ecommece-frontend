@@ -157,7 +157,9 @@ export default function LoginPage() {
             )}
 
             {errors?.password?.type === 'mismatch' && (
-              <InputErrorMessage>A senha é inválida.</InputErrorMessage>
+              <InputErrorMessage>
+                A senha é inválida ou O e-mail não foi encontrado.
+              </InputErrorMessage>
             )}
           </LoginInputContainer>
 
