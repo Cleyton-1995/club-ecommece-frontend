@@ -20,8 +20,9 @@ import {
 import { auth, db } from '../../config/firebase.config'
 import { addDoc, collection } from 'firebase/firestore'
 import { UserContext } from '../../context/userContext'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Loading from '../../components/Loading/Loading'
 
 interface SignUpForm {
   firstName: string
@@ -40,6 +41,8 @@ export default function SignUpPage() {
     formState: { errors }
   } = useForm<SignUpForm>()
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const { isAuthenticated } = useContext(UserContext)
 
   const navigate = useNavigate()
@@ -54,6 +57,8 @@ export default function SignUpPage() {
 
   async function handleSubmitPress(data: SignUpForm) {
     try {
+      setIsLoading(true)
+
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
         data.email,
@@ -72,12 +77,16 @@ export default function SignUpPage() {
       if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
         return setError('email', { type: 'AlreadyInUse' })
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <>
       <HeaderComponent />
+
+      {isLoading && <Loading />}
 
       <SignUpContainer>
         <SignUpContent>
