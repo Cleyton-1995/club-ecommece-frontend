@@ -16,6 +16,10 @@ export default function HeaderComponent() {
 
   const { isAuthenticated } = useContext(UserContext)
 
+  function handleLogoClick() {
+    navigate('/')
+  }
+
   function handleLoginClick() {
     navigate('/login')
   }
@@ -26,7 +30,7 @@ export default function HeaderComponent() {
 
   return (
     <HeaderContainer>
-      <HeaderTitle>CLUB CLOTHING</HeaderTitle>
+      <HeaderTitle onClick={handleLogoClick}>CLUB CLOTHING</HeaderTitle>
 
       <HeaderItems>
         <HeaderItem>Explorar</HeaderItem>
