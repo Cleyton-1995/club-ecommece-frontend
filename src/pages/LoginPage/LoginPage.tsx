@@ -22,9 +22,10 @@ import {
 } from 'firebase/auth'
 import { auth, db, googleProvider } from '../../config/firebase.config'
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/userContext'
 import { useNavigate } from 'react-router-dom'
+import Loading from '../../components/Loading/Loading'
 
 interface LoginForm {
   email: string
@@ -39,6 +40,8 @@ export default function LoginPage() {
     handleSubmit
   } = useForm<LoginForm>()
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const { isAuthenticated } = useContext(UserContext)
 
   const navigate = useNavigate()
@@ -51,6 +54,7 @@ export default function LoginPage() {
 
   async function handleSubmitPress(data: LoginForm) {
     try {
+      setIsLoading(true)
       const userCredentials = await signInWithEmailAndPassword(
         auth,
         data.email,
@@ -75,13 +79,14 @@ export default function LoginPage() {
       ) {
         return setError('email', { type: 'notFound' })
       }
-
-      console.log({ _error })
+    } finally {
+      setIsLoading(false)
     }
   }
 
   async function handlesignInWithGoogle() {
     try {
+      setIsLoading(true)
       const userCredentials = await signInWithPopup(auth, googleProvider)
 
       const querySnapshot = await getDocs(
@@ -109,12 +114,16 @@ export default function LoginPage() {
       console.log(user)
     } catch (error) {
       console.log(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <>
       <HeaderComponent />
+
+      {isLoading && <Loading />}
 
       <LoginContainer>
         <LoginContent>
