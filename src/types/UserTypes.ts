@@ -1,6 +1,5 @@
-import { User } from 'lucide-react'
-
-interface UserTypes {
+interface User {
+  id: string
   firstName: string
   lastName: string
   email: string

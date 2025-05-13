@@ -1,5 +1,6 @@
-import { User } from 'firebase/auth'
+// import { User } from 'firebase/auth'
 import { createContext, ReactNode, useState } from 'react'
+import User from '../types/UserTypes'
 
 interface IUserContext {
   currentUser: User
