@@ -31,6 +31,20 @@ export default function CartContextProvider({
   }
 
   function addProductsToCart(product: ProductTypes) {
+    const productIsAldearyInCart = products.some(
+      (item) => item.id === product.id
+    )
+
+    if (productIsAldearyInCart) {
+      return setProduts((products) =>
+        products.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      )
+    }
+
     setProduts((prevState) => [...prevState, { ...product, quantity: 1 }])
   }
 
