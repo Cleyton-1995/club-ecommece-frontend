@@ -10,10 +10,12 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../../config/firebase.config'
 import { useContext } from 'react'
 import { UserContext } from '../../context/userContext'
+import { CartContext } from '../../context/cartContext'
 
 export default function HeaderComponent() {
   const navigate = useNavigate()
 
+  const { toggleCart } = useContext(CartContext)
   const { isAuthenticated } = useContext(UserContext)
 
   function handleLogoClick() {
@@ -47,7 +49,7 @@ export default function HeaderComponent() {
         {isAuthenticated && (
           <HeaderItem onClick={() => signOut(auth)}>Sair</HeaderItem>
         )}
-        <HeaderItem>
+        <HeaderItem onClick={toggleCart}>
           <BsCart3 size={25} />
           <p style={{ marginLeft: 5 }}>5</p>
         </HeaderItem>
