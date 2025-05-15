@@ -1,18 +1,32 @@
+import { BsCartPlus } from 'react-icons/bs'
 import ProductTypes from '../../types/ProductsTypes'
+import CustomButton from '../CustomButton/CustomButton'
 import {
   ProductContainer,
   ProductImage,
   ProductInfo
 } from './ProductItem.styles'
+import { CartContext } from '../../context/cartContext'
+import { useContext } from 'react'
 
 interface ProductItemProps {
   product: ProductTypes
 }
 
 export default function ProductItem({ product }: ProductItemProps) {
+  const { addProductsToCart } = useContext(CartContext)
+
+  function handleAddToCartClick() {
+    addProductsToCart(product)
+  }
+
   return (
     <ProductContainer>
-      <ProductImage imageUrl={product.imageUrl} />
+      <ProductImage imageUrl={product.imageUrl}>
+        <CustomButton startIcon={<BsCartPlus />} onClick={handleAddToCartClick}>
+          Adiconar ao carrinho
+        </CustomButton>
+      </ProductImage>
 
       <ProductInfo>
         <p>{product.name}</p>

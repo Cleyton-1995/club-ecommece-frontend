@@ -9,9 +9,10 @@ import {
 } from './Cart.styles'
 import { useContext } from 'react'
 import { CartContext } from '../../context/cartContext'
+import CartItem from '../CartItem/CartItem'
 
 export default function Cart() {
-  const { isVisible, toggleCart } = useContext(CartContext)
+  const { isVisible, toggleCart, products } = useContext(CartContext)
 
   return (
     <CartContainer isVisible={isVisible}>
@@ -19,6 +20,10 @@ export default function Cart() {
 
       <CartContent>
         <CartTitle>Seu Carrinho</CartTitle>
+
+        {products.map((product) => (
+          <CartItem key={product.id} product={product} />
+        ))}
 
         <CartTotal>Total: R$ 100</CartTotal>
 
