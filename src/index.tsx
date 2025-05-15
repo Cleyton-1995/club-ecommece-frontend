@@ -5,12 +5,15 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import UserContextProvider from './context/userContext'
 import CategoryContextProvider from './context/categoryContext'
+import CartContextProvider from './context/cartContext'
 
 ReactDOM.render(
   <React.StrictMode>
     <UserContextProvider>
       <CategoryContextProvider>
-        <App />
+        <CartContextProvider>
+          <App />
+        </CartContextProvider>
       </CategoryContextProvider>
     </UserContextProvider>
   </React.StrictMode>,
