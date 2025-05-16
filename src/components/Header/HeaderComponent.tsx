@@ -15,7 +15,7 @@ import { CartContext } from '../../context/cartContext'
 export default function HeaderComponent() {
   const navigate = useNavigate()
 
-  const { toggleCart } = useContext(CartContext)
+  const { toggleCart, productsCount } = useContext(CartContext)
   const { isAuthenticated } = useContext(UserContext)
 
   function handleLogoClick() {
@@ -51,7 +51,7 @@ export default function HeaderComponent() {
         )}
         <HeaderItem onClick={toggleCart}>
           <BsCart3 size={25} />
-          <p style={{ marginLeft: 5 }}>5</p>
+          <p style={{ marginLeft: 5 }}>{productsCount}</p>
         </HeaderItem>
       </HeaderItems>
     </HeaderContainer>

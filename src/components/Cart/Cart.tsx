@@ -12,7 +12,7 @@ import { CartContext } from '../../context/cartContext'
 import CartItem from '../CartItem/CartItem'
 
 export default function Cart() {
-  const { isVisible, toggleCart, products, produuctsTotalPrice } =
+  const { isVisible, toggleCart, products, productsTotalPrice } =
     useContext(CartContext)
 
   return (
@@ -26,7 +26,7 @@ export default function Cart() {
           <CartItem key={product.id} product={product} />
         ))}
 
-        <CartTotal>Total: R$ {produuctsTotalPrice}</CartTotal>
+        <CartTotal>Total: R$ {productsTotalPrice}</CartTotal>
 
         <CustomButton startIcon={<BsCartCheck />}>
           Ir para o checkout
