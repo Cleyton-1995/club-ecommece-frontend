@@ -28,6 +28,7 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
+    "multiline-ternary": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "warn",
     "space-before-function-paren": "off",
