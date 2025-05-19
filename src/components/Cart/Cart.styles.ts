@@ -19,6 +19,7 @@ export const CartContainer = styled.div<CartContainerPros>`
   visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.isVisible ? '1' : '0')};
   transition: all 0.3s ease;
+  overflow-y: scroll;
 
   p {
     color: ${Colors.text.dark};
