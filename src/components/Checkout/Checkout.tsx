@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import {
   CheckoutContainer,
   CheckoutProducts,
@@ -9,12 +9,35 @@ import { CartContext } from '../../context/cartContext'
 import CartItem from '../CartItem/CartItem'
 import CustomButton from '../CustomButton/CustomButton'
 import { BsBagCheck } from 'react-icons/bs'
+import axios from 'axios'
+import Loading from '../Loading/Loading'
 
 export default function Checkout() {
   const { products, productsTotalPrice } = useContext(CartContext)
 
+  const [isLoaging, setIsLoaging] = useState(false)
+
+  async function handleFinishPurchaseClick() {
+    try {
+      setIsLoaging(true)
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/create-checkout-session`,
+        {
+          products
+        }
+      )
+
+      window.location.href = data.url
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoaging(false)
+    }
+  }
+
   return (
     <CheckoutContainer>
+      {isLoaging && <Loading />}
       <CheckoutTitle>Checkout</CheckoutTitle>
 
       {products.length > 0 ? (
@@ -27,7 +50,9 @@ export default function Checkout() {
 
           <CheckoutTotal>Tota: R$ {productsTotalPrice}</CheckoutTotal>
 
-          <CustomButton startIcon={<BsBagCheck />}>
+          <CustomButton
+            startIcon={<BsBagCheck />}
+            onClick={handleFinishPurchaseClick}>
             Finalizar Compra
           </CustomButton>
         </>
