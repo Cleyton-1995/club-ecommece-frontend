@@ -1,8 +1,8 @@
-import { ReactNode, useContext, useEffect } from 'react'
-import { UserContext } from '../context/userContext'
+import { ReactNode, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import HeaderComponent from '../components/Header/HeaderComponent'
 import Loading from '../components/Loading/Loading'
+import { useSelector } from 'react-redux'
 
 interface AuthenticationGuardProps {
   children: ReactNode
@@ -10,7 +10,9 @@ interface AuthenticationGuardProps {
 export default function AuthenticationGuard({
   children
 }: AuthenticationGuardProps) {
-  const { isAuthenticated } = useContext(UserContext)
+  const { isAuthenticated } = useSelector(
+    (rootReducer: any) => rootReducer.userReducer
+  )
 
   const navigate = useNavigate()
 
