@@ -6,16 +6,20 @@ import reportWebVitals from './reportWebVitals'
 import UserContextProvider from './context/userContext'
 import CategoryContextProvider from './context/categoryContext'
 import CartContextProvider from './context/cartContext'
+import { Provider } from 'react-redux'
+import store from './store/store'
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserContextProvider>
-      <CategoryContextProvider>
-        <CartContextProvider>
-          <App />
-        </CartContextProvider>
-      </CategoryContextProvider>
-    </UserContextProvider>
+    <Provider store={store}>
+      <UserContextProvider>
+        <CategoryContextProvider>
+          <CartContextProvider>
+            <App />
+          </CartContextProvider>
+        </CategoryContextProvider>
+      </UserContextProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 )
