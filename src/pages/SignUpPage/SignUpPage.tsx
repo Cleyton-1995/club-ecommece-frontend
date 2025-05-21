@@ -22,7 +22,7 @@ import { addDoc, collection } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Loading from '../../components/Loading/Loading'
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '../../hooks/redex-hooks'
 
 interface SignUpForm {
   firstName: string
@@ -43,8 +43,8 @@ export default function SignUpPage() {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const { isAuthenticated } = useSelector(
-    (rootReducer: any) => rootReducer.userReducer
+  const { isAuthenticated } = useAppSelector(
+    (rootReducer) => rootReducer.userReducer
   )
 
   const navigate = useNavigate()

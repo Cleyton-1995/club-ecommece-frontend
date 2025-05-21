@@ -14,15 +14,16 @@ import Cart from './components/Cart/Cart'
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage'
 import AuthenticationGuard from './guards/Authentication.guard'
 import PaymentConfirmation from './pages/PaymentConfirmation/PaymentConfirmation'
-import { useDispatch, useSelector } from 'react-redux'
-import { loginUser, logout } from './store/reducers/user/UserAction'
+import { useDispatch } from 'react-redux'
+import { loginUser, logoutUser } from './store/reducers/user/UserAction'
+import { useAppSelector } from './hooks/redex-hooks'
 function App() {
   const [isInitializing, setIsInitializing] = useState(true)
 
   const dispatch = useDispatch()
 
-  const { isAuthenticated } = useSelector(
-    (rootReducer: any) => rootReducer.userReducer
+  const { isAuthenticated } = useAppSelector(
+    (rootReducer) => rootReducer.userReducer
   )
 
   useEffect(() => {
@@ -30,7 +31,7 @@ function App() {
       const isSigninOut = isAuthenticated && !user
 
       if (isSigninOut) {
-        dispatch(logout())
+        dispatch(logoutUser())
 
         return setIsInitializing(false)
       }

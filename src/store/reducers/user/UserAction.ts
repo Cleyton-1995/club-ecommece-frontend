@@ -1,9 +1,24 @@
 import User from '../../../types/UserTypes'
 import UserActionTypes from './useActionTypes'
 
-export const loginUser = (payload: User) => ({
+interface LoginUserAction {
+  type: typeof UserActionTypes.LOGIN
+  payload: User
+  [key: string]: any
+}
+
+export const loginUser = (payload: User): LoginUserAction => ({
   type: UserActionTypes.LOGIN,
   payload
 })
 
-export const logout = () => ({ type: UserActionTypes.LOGOUT })
+interface LogoutUserAction {
+  type: typeof UserActionTypes.LOGOUT
+  [key: string]: any
+}
+
+export const logoutUser = (): LogoutUserAction => ({
+  type: UserActionTypes.LOGOUT
+})
+
+export type UserActions = LoginUserAction | LogoutUserAction
