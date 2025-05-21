@@ -15,6 +15,7 @@ import CheckoutPage from './pages/CheckoutPage/CheckoutPage'
 import AuthenticationGuard from './guards/Authentication.guard'
 import PaymentConfirmation from './pages/PaymentConfirmation/PaymentConfirmation'
 import { useDispatch, useSelector } from 'react-redux'
+import { loginUser, logout } from './store/reducers/user/UserAction'
 function App() {
   const [isInitializing, setIsInitializing] = useState(true)
 
@@ -29,7 +30,7 @@ function App() {
       const isSigninOut = isAuthenticated && !user
 
       if (isSigninOut) {
-        dispatch({ type: 'LOGOUT_USER' })
+        dispatch(logout())
 
         return setIsInitializing(false)
       }
@@ -46,7 +47,7 @@ function App() {
 
         const userFromFireStore = querySnapshot.docs[0]?.data()
 
-        dispatch({ type: 'LOGIN_USER', payload: userFromFireStore })
+        dispatch(loginUser(userFromFireStore))
 
         return setIsInitializing(false)
       }
