@@ -6,18 +6,18 @@ import {
   ProductImage,
   ProductInfo
 } from './ProductItem.styles'
-import { CartContext } from '../../context/cartContext'
-import { useContext } from 'react'
+import { useDispatch } from 'react-redux'
+import { addProductsToCart } from '../../store/reducers/cart/cartActions'
 
 interface ProductItemProps {
   product: ProductTypes
 }
 
 export default function ProductItem({ product }: ProductItemProps) {
-  const { addProductsToCart } = useContext(CartContext)
+  const dispatch = useDispatch()
 
   function handleAddToCartClick() {
-    addProductsToCart(product)
+    dispatch(addProductsToCart(product))
   }
 
   return (

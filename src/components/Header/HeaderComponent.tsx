@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../config/firebase.config'
 import { logoutUser } from '../../store/reducers/user/UserAction'
+import { toggleCart } from '../../store/reducers/cart/cartActions'
 
 export default function HeaderComponent() {
   const navigate = useNavigate()
@@ -22,7 +23,7 @@ export default function HeaderComponent() {
     (rootReducer: any) => rootReducer.userReducer
   )
 
-  const { toggleCart, productsCount } = useContext(CartContext)
+  const { productsCount } = useContext(CartContext)
 
   function handleLogoClick() {
     navigate('/')
@@ -45,6 +46,10 @@ export default function HeaderComponent() {
     signOut(auth)
   }
 
+  function handleCartClick() {
+    dispatch(toggleCart())
+  }
+
   return (
     <HeaderContainer>
       <HeaderTitle onClick={handleLogoClick}>CLUB CLOTHING</HeaderTitle>
@@ -60,7 +65,7 @@ export default function HeaderComponent() {
         {isAuthenticated && (
           <HeaderItem onClick={handleSignOutClick}>Sair</HeaderItem>
         )}
-        <HeaderItem onClick={toggleCart}>
+        <HeaderItem onClick={handleCartClick}>
           <BsCart3 size={25} />
           <p style={{ marginLeft: 5 }}>{productsCount}</p>
         </HeaderItem>
