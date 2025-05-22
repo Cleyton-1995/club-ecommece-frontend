@@ -11,11 +11,12 @@ import {
 import Colors from '../../theme/theme.colors'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import CustomButton from '../../components/CustomButton/CustomButton'
-import { useContext, useEffect } from 'react'
-import { CartContext } from '../../context/cartContext'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { clearCartProducts } from '../../store/reducers/cart/cartActions'
 
 export default function PaymentConfirmation() {
-  const { clearProducts } = useContext(CartContext)
+  const dispatch = useDispatch()
 
   const [searchParams] = useSearchParams()
 
@@ -24,7 +25,7 @@ export default function PaymentConfirmation() {
 
   useEffect(() => {
     if (status === 'true') {
-      clearProducts()
+      dispatch(clearCartProducts())
     }
   }, [status])
 

@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { ICartProduct } from '../../types/CartTypes'
 import {
   CartItemContainer,
@@ -8,29 +7,30 @@ import {
   RemoveButton
 } from './CartItem.styles'
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineClose } from 'react-icons/ai'
-import { CartContext } from '../../context/cartContext'
+import { useDispatch } from 'react-redux'
+import {
+  decreaseCartProductQuantity,
+  increaseCartProductQuantity,
+  removeProductFromCart
+} from '../../store/reducers/cart/cartActions'
 
 interface CartItemProps {
   product: ICartProduct
 }
 
 export default function CartItem({ product }: CartItemProps) {
-  const {
-    removeProductFromCart,
-    increaseProductQuantity,
-    decreaseProductQuantity
-  } = useContext(CartContext)
+  const dispatch = useDispatch()
 
   function handleRemoveClick() {
-    removeProductFromCart(product.id)
+    dispatch(removeProductFromCart(product.id))
   }
 
   function handleIncreaseClick() {
-    increaseProductQuantity(product.id)
+    dispatch(increaseCartProductQuantity(product.id))
   }
 
   function handleDecreaseClick() {
-    decreaseProductQuantity(product.id)
+    dispatch(decreaseCartProductQuantity(product.id))
   }
 
   return (
