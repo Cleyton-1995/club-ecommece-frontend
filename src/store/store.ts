@@ -1,9 +1,23 @@
 import { applyMiddleware, createStore } from 'redux'
-import rootReducer from './root-reducer'
 import logger from 'redux-logger'
+import storage from 'redux-persist/lib/storage'
+import persistReducer from 'redux-persist/es/persistReducer'
+import persistStore from 'redux-persist/es/persistStore'
 
-const store = createStore(rootReducer, applyMiddleware(logger))
+import rootReducer from './root-reducer'
+
+const persistCofig = {
+  key: 'root',
+  storage,
+  whitelist: ['cartReducer']
+}
+
+const persistedRoodReducer: typeof rootReducer = persistReducer(
+  persistCofig,
+  rootReducer
+)
+
+export const store = createStore(persistedRoodReducer, applyMiddleware(logger))
+export const persistedStore = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>
-
-export default store

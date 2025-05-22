@@ -75,6 +75,6 @@ export default function cartReducer(state = InitialState, action: any) {
       return { ...state, products: [] }
 
     default:
-      return { ...state }
+      return state
   }
 }

@@ -1,19 +1,22 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import {
   CheckoutContainer,
   CheckoutProducts,
   CheckoutTitle,
   CheckoutTotal
 } from './Checkout.styles'
-import { CartContext } from '../../context/cartContext'
 import CartItem from '../CartItem/CartItem'
 import CustomButton from '../CustomButton/CustomButton'
 import { BsBagCheck } from 'react-icons/bs'
 import axios from 'axios'
 import Loading from '../Loading/Loading'
+import { useAppSelector } from '../../hooks/redex-hooks'
+import { useSelector } from 'react-redux'
+import { selectProductsTotalPrice } from '../../store/reducers/cart/cartSelector'
 
 export default function Checkout() {
-  const { products, productsTotalPrice } = useContext(CartContext)
+  const { products } = useAppSelector((state) => state.cartReducer)
+  const productsTotalPrice = useSelector(selectProductsTotalPrice)
 
   const [isLoaging, setIsLoaging] = useState(false)
 
