@@ -6,24 +6,24 @@ import {
   HeaderTitle
 } from './Header.styles'
 import { BsCart3 } from 'react-icons/bs'
-import { useContext } from 'react'
-import { CartContext } from '../../context/cartContext'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../config/firebase.config'
 import { logoutUser } from '../../store/reducers/user/UserAction'
 import { toggleCart } from '../../store/reducers/cart/cartActions'
+import { useAppSelector } from '../../hooks/redex-hooks'
+import { selectProductsCount } from '../../store/reducers/cart/cartSelector'
 
 export default function HeaderComponent() {
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
-  const { isAuthenticated } = useSelector(
-    (rootReducer: any) => rootReducer.userReducer
+  const { isAuthenticated } = useAppSelector(
+    (rootReducer) => rootReducer.userReducer
   )
 
-  const { productsCount } = useContext(CartContext)
+  const productsCount = useAppSelector(selectProductsCount)
 
   function handleLogoClick() {
     navigate('/')
