@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import CategoryContextProvider from './context/categoryContext'
 import { Provider } from 'react-redux'
 import { persistedStore, store } from './store/store'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -12,9 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistedStore}>
-        <CategoryContextProvider>
-          <App />
-        </CategoryContextProvider>
+        <App />
       </PersistGate>
     </Provider>
   </React.StrictMode>,
