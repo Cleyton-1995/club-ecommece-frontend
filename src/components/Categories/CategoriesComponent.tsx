@@ -1,13 +1,19 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import CategoryItemComponent from '../CategoryItem/CategoryItemComponent'
 import { CategoriesContainer, CategoriesContent } from './Categories.styles'
-import { CategoryContext } from '../../context/categoryContext'
 import Loading from '../Loading/Loading'
+import { fetchCayegories } from '../../store/reducers/category/categoryAction'
+import { useDispatch } from 'react-redux'
+import { useAppSelector } from '../../hooks/redex-hooks'
 export default function CategoriesComponent() {
-  const { categories, fetchCayegories, isLoading } = useContext(CategoryContext)
+  const { categories, isLoading } = useAppSelector(
+    (state) => state.categoryReducer
+  )
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    fetchCayegories()
+    dispatch(fetchCayegories() as any)
   }, [])
   return (
     <CategoriesContainer>
