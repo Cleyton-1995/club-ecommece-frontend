@@ -15,7 +15,7 @@ import CheckoutPage from './pages/CheckoutPage/CheckoutPage'
 import AuthenticationGuard from './guards/Authentication.guard'
 import PaymentConfirmation from './pages/PaymentConfirmation/PaymentConfirmation'
 import { useDispatch } from 'react-redux'
-import { loginUser, logoutUser } from './store/reducers/user/UserAction'
+import { loginUser, logoutUser } from './store/toolkit/user/user.slice'
 import { useAppSelector } from './hooks/redex-hooks'
 function App() {
   const [isInitializing, setIsInitializing] = useState(true)
