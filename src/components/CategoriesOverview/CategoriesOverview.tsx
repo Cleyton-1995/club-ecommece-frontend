@@ -4,7 +4,7 @@ import CategoryOverview from '../CategoryOverview/CategoryOverview'
 import Loading from '../Loading/Loading'
 import { useAppSelector } from '../../hooks/redex-hooks'
 import { useDispatch } from 'react-redux'
-import { fetchCayegories } from '../../store/reducers/category/categoryAction'
+import { fetchCayegories } from '../../store/toolkit/category/category.slice'
 
 export default function CategoriesOverview() {
   const { categories, isLoading } = useAppSelector(
