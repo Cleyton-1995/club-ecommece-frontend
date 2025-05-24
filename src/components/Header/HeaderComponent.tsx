@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../config/firebase.config'
 import { logoutUser } from '../../store/toolkit/user/user.slice'
-import { toggleCart } from '../../store/reducers/cart/cartActions'
+import { toggleCart } from '../../store/toolkit/cart/cart.slice'
 import { useAppSelector } from '../../hooks/redex-hooks'
 import { selectProductsCount } from '../../store/reducers/cart/cartSelector'
 

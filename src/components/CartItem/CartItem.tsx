@@ -12,7 +12,7 @@ import {
   decreaseCartProductQuantity,
   increaseCartProductQuantity,
   removeProductFromCart
-} from '../../store/reducers/cart/cartActions'
+} from '../../store/toolkit/cart/cart.slice'
 
 interface CartItemProps {
   product: ICartProduct

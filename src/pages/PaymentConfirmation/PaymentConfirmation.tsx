@@ -13,7 +13,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { clearCartProducts } from '../../store/reducers/cart/cartActions'
+import { clearCartProducts } from '../../store/toolkit/cart/cart.slice'
 
 export default function PaymentConfirmation() {
   const dispatch = useDispatch()

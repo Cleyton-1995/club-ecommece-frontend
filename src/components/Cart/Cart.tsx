@@ -11,7 +11,7 @@ import CartItem from '../CartItem/CartItem'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../hooks/redex-hooks'
 import { useDispatch } from 'react-redux'
-import { toggleCart } from '../../store/reducers/cart/cartActions'
+import { toggleCart } from '../../store/toolkit/cart/cart.slice'
 import {
   selectProductsCount,
   selectProductsTotalPrice
