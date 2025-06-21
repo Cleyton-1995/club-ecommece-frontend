@@ -21,4 +21,21 @@ describe('Sign Up', () => {
     getByText(/a senha é obrigatória./i)
     getByText(/a confirmação da senha é obrigatório!/i)
   })
+
+  it('should show error when filling an invalid email', async () => {
+    const { getByText, findByText, getByPlaceholderText } = renderWithRedux(
+      <SignUpPage />,
+      {}
+    )
+
+    const emailInput = getByPlaceholderText(/digite seu e-mail/i)
+
+    userEvent.type(emailInput, 'invalid_email')
+
+    const submitButton = getByText('Criar Conta', { selector: 'button' })
+
+    userEvent.click(submitButton)
+
+    await findByText(/por favor, insira um e-mail válido./i)
+  })
 })
