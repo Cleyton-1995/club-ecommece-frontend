@@ -13,6 +13,7 @@ export const CustomButtonContainer = styled.button`
   border: none;
   padding-top: 10px;
   padding-bottom: 10px;
+  margin-bottom: 20px;
   padding-right: 15px;
   padding-left: 15px;
   font-weight: 600;

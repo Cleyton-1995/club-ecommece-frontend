@@ -14,6 +14,7 @@ export const SignUpHeadline = styled.p`
   margin-bottom: 20px;
   color: ${Colors.text.dark};
   padding-bottom: 20px;
+  margin-top: 40px;
   border-bottom: 1px solid #6c757d;
   width: 100%;
   text-align: center;
